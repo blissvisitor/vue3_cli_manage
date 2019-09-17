@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width,initial-scale=1.0'>
+    <title>东深电子农村饮水管理平台</title>
+    <link rel='stylesheet' href='<%= BASE_URL%>static/videojs/video-js.min.css'>
+    <link rel='stylesheet' href='<%= BASE_URL%>static/libs/My97DatePicker/skin/WdatePicker.css'>
+</head>
+<body>
+<noscript>
+    <strong>We're sorry but enen doesn't work properly without JavaScript enabled. Please enable it to
+        continue.</strong>
+</noscript>
+<a href='http://www.adobe.com/go/getflashplayer'></a>
+<div id="player0"></div>
+<div id='app'></div>
+<!--<script src='<%= BASE_URL%>moduleConfig.js'></script>-->
+<!--<script src='<%= BASE_URL%>gisConfig.js'></script>-->
+<!-- built files will be auto injected -->
+<script src='<%= BASE_URL%>static/config.js'></script>
+<script src='<%= BASE_URL%>static/libs/jquery-3.3.1.min.js'></script>
+<script src='<%= BASE_URL%>static/libs/FlashObject.js'></script>
+<script src='<%= BASE_URL%>static/videojs/video.js'></script>
+<script src='<%= BASE_URL%>static/libs/My97DatePicker/WdatePicker.js'></script>
+<script>
+    videojs.options.flash.swf = './static/videojs/video-js.swf';
+    window.onload=function () {
+        // 判断浏览器是否支持placeholder属性
+        function isSupportPlaceholder() {
+            var input = document.createElement('input');
+            return 'placeholder' in input;
+        };
+        //判断是否是IE浏览器，包括Edge浏览器
+        function IEVersion() {
+            //取得浏览器的userAgent字符串
+            var userAgent = navigator.userAgent;
+            //判断是否IE浏览器
+            var isIE = userAgent.indexOf('compatible') > -1 && userAgent.indexOf('MSIE') > -1;
+            if (isIE) {
+                var reIE = new RegExp('MSIE (\\d+\\.\\d+);');
+                reIE.test(userAgent);
+                var fIEVersion = parseFloat(RegExp['$1']);
+                if (fIEVersion < 11 || !isSupportPlaceholder()) {
+                    return true;
+                }
+            } else {
+                return false;
+            }
+        }
+        window.IE_flag = IEVersion();
+        if (IE_flag) {
+            window.location.href='./error.html'
+        }
+    }
+</script>
+</body>
+</html>
